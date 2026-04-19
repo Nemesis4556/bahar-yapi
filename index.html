@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mekânın Ruhu, Sizin İmzanız. Lüksü konforla, moderni zanaatla harmanlayan zamansız yaşam alanları tasarlıyoruz.">
+    <title>Bahar Yapı Dekorasyon | Mekânın Ruhu, Sizin İmzanız</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* ─── RESET ─────────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ─── TOKENS ─────────────────────────────────── */
+        :root {
+            --bg:           #0C0C0C;
+            --bg2:          #141414;
+            --bg3:          #1A1A1A;
+            --line:         rgba(255,255,255,0.08);
+            --txt:          #F0EDE8;
+            --txt2:         #8A8680;
+            --txt3:         #5A5652;
+            --gold:         #C4986A;
+            --gold2:        #E8C99A;
+            --gold-glow:    rgba(196,152,106,0.18);
+            --glass:        rgba(255,255,255,0.04);
+            --glass-border: rgba(255,255,255,0.08);
+            --shadow:       0 8px 40px rgba(0,0,0,0.6);
+            --shadow-sm:    0 4px 16px rgba(0,0,0,0.4);
+            --serif:        'Cormorant Garamond', Georgia, serif;
+            --sans:         'DM Sans', system-ui, sans-serif;
+            --ease:         cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+            --sp-xs: clamp(0.5rem,  1vw,  0.75rem);
+            --sp-sm: clamp(0.875rem,2vw,  1.25rem);
+            --sp-md: clamp(1.5rem,  3vw,  2.5rem);
+            --sp-lg: clamp(3rem,    6vw,  5rem);
+            --sp-xl: clamp(5rem,    10vw, 8rem);
+        }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        @media (max-width: 767px) { body { padding-bottom: 72px; } }
+
+        /* ─── TYPE ───────────────────────────────────── */
+        .t-hero    { font-family: var(--serif); font-size: clamp(2.6rem,9vw,6.5rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; }
+        .t-section { font-family: var(--serif); font-size: clamp(1.9rem,5vw,3.5rem); font-weight: 400; line-height: 1.2; }
+        .t-quote   { font-family: var(--serif); font-size: clamp(4rem,13vw,11rem);  font-weight: 300; line-height: 1; letter-spacing: 0.05em; color: var(--txt); opacity: 0.04; }
+        .t-label   { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); }
+        .t-body    { font-size: clamp(0.9rem,1.5vw,1rem); line-height: 1.8; color: var(--txt2); }
+        .t-large   { font-size: clamp(1.05rem,2vw,1.3rem); line-height: 1.75; }
+
+        /* ─── PRELOADER ──────────────────────────────── */
+        .preloader {
+            position: fixed; inset: 0; background: var(--bg);
+            z-index: 9999; display: flex; align-items: center;
+            justify-content: center;
+            transition: opacity 0.9s var(--ease-out), visibility 0.9s;
+        }
+        .preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .pl-inner { text-align: center; }
+        .pl-logo {
+            font-family: var(--serif); font-size: 1.6rem; font-weight: 300;
+            letter-spacing: 0.35em; color: var(--txt);
+            opacity: 0; animation: plFade 1s var(--ease) 0.2s forwards;
+        }
+        .pl-sub {
+            font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--txt3); margin-top: 0.5rem;
+            opacity: 0; animation: plFade 1s var(--ease) 0.6s forwards;
+        }
+        .pl-line {
+            width: 80px; height: 1px; background: var(--txt3);
+            margin: 1.5rem auto 0; position: relative; overflow: hidden;
+        }
+        .pl-line::after {
+            content: ''; position: absolute; inset: 0;
+            background: var(--gold); transform: scaleX(0);
+            transform-origin: left; animation: plBar 2s var(--ease) 0.3s forwards;
+        }
+        @keyframes plFade { to { opacity: 1; } }
+        @keyframes plBar  { to { transform: scaleX(1); } }
+
+        /* ─── NAVBAR ─────────────────────────────────── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            padding: var(--sp-sm) var(--sp-md);
+            transition: all 0.4s var(--ease);
+        }
+        .navbar.scrolled {
+            background: rgba(12,12,12,0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--line);
+            padding: 0.6rem var(--sp-md);
+        }
+        .nav-inner {
+            max-width: 1360px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: var(--serif); font-weight: 400;
+            font-size: clamp(1.05rem,2.5vw,1.3rem);
+            letter-spacing: 0.12em; color: var(--txt);
+            text-decoration: none; z-index: 1001; flex-shrink: 0;
+        }
+        .nav-logo span { color: var(--gold); }
+
+        /* Desktop links */
+        .nav-links {
+            display: none; gap: var(--sp-md); list-style: none;
+        }
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+        }
+        .nav-links a {
+            font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--txt2); text-decoration: none; position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -3px; left: 0;
+            width: 0; height: 1px; background: var(--gold);
+            transition: width 0.3s var(--ease);
+        }
+        .nav-links a:hover { color: var(--txt); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Right side */
+        .nav-right { display: flex; align-items: center; gap: 0.75rem; z-index: 1001; }
+
+        .nav-insta-btn {
+            display: none; align-items: center; gap: 0.45rem;
+            padding: 0.42rem 1rem; border-radius: 100px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass); color: var(--txt2);
+            font-size: 0.78rem; font-family: var(--sans); font-weight: 400;
+            letter-spacing: 0.06em; text-decoration: none;
+            transition: all 0.3s var(--ease); white-space: nowrap;
+        }
+        .nav-insta-btn i { width: 15px; height: 15px; color: var(--gold); flex-shrink: 0; }
+        .nav-insta-btn:hover {
+            background: var(--gold); border-color: var(--gold);
+            color: #fff;
+        }
+        .nav-insta-btn:hover i { color: #fff; }
+        @media (min-width: 768px) { .nav-insta-btn { display: flex; } }
+
+        /* Hamburger */
+        .hamburger {
+            display: flex; flex-direction: column; gap: 5px;
+            padding: 8px; background: none; border: none; cursor: pointer;
+        }
+        .hamburger span {
+            display: block; width: 22px; height: 1px; background: var(--txt);
+            transition: all 0.3s var(--ease);
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+        @media (min-width: 768px) { .hamburger { display: none; } }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            position: fixed; inset: 0; background: var(--bg);
+            z-index: 998; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; gap: var(--sp-md);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.35s var(--ease);
+        }
+        .mobile-menu.open { opacity: 1; pointer-events: all; }
+        .mobile-menu a {
+            font-family: var(--serif); font-size: clamp(1.8rem,8vw,2.5rem);
+            font-weight: 300; color: var(--txt); text-decoration: none;
+            letter-spacing: 0.05em; transition: color 0.3s;
+        }
+        .mobile-menu a:hover { color: var(--gold); }
+
+        /* ─── HERO ───────────────────────────────────── */
+        .hero {
+            min-height: 100svh; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: brightness(0.45) saturate(0.8);
+            will-change: transform;
+        }
+        .hero-grad {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom,
+                rgba(12,12,12,0.2) 0%,
+                rgba(12,12,12,0.05) 40%,
+                rgba(12,12,12,0.9) 100%);
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            text-align: center; padding: var(--sp-xl) var(--sp-md) var(--sp-lg);
+            max-width: 860px; width: 100%;
+        }
+        .hero-label {
+            color: var(--gold2); margin-bottom: var(--sp-md);
+            opacity: 0; transform: translateY(16px);
+        }
+        .hero-title {
+            color: #fff; margin-bottom: var(--sp-md);
+            opacity: 0;
+        }
+        .hero-title .w { display: inline-block; margin-right: 0.25em; }
+        .hero-title .c { display: inline-block; opacity: 0; transform: translateY(36px); }
+        .hero-sub {
+            color: rgba(255,255,255,0.75); max-width: 560px;
+            margin: 0 auto var(--sp-lg);
+            opacity: 0; transform: translateY(16px);
+        }
+        .scroll-cue {
+            position: absolute; bottom: clamp(2rem,5vh,4rem); left: 50%;
+            transform: translateX(-50%); display: flex;
+            flex-direction: column; align-items: center; gap: 0.5rem;
+            color: rgba(255,255,255,0.4); opacity: 0;
+        }
+        .scroll-cue-line {
+            width: 1px; height: 52px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: pulse 2.2s infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 1; transform: scaleY(1); }
+            50%      { opacity: 0.4; transform: scaleY(0.6); }
+        }
+
+        /* ─── SECTIONS ───────────────────────────────── */
+        section { padding: var(--sp-xl) var(--sp-md); }
+        .container { max-width: 1160px; margin: 0 auto; }
+        .sec-head { text-align: center; margin-bottom: var(--sp-lg); }
+        .sec-head .t-label { margin-bottom: 0.75rem; display: block; }
+
+        /* ─── ABOUT ──────────────────────────────────── */
+        .about { background: var(--bg2); position: relative; overflow: hidden; }
+        .about-wm {
+            position: absolute; font-family: var(--serif);
+            font-size: clamp(7rem,18vw,14rem); font-weight: 300;
+            color: #fff; opacity: 0.025;
+            top: 50%; left: 50%; transform: translate(-50%,-50%);
+            white-space: nowrap; pointer-events: none; user-select: none;
+        }
+        .about-text {
+            font-family: var(--serif);
+            font-size: clamp(1.2rem,2.8vw,1.65rem);
+            font-weight: 300; font-style: italic;
+            line-height: 1.85; color: var(--txt2);
+            max-width: 760px; margin: 0 auto; text-align: center;
+            position: relative; z-index: 1;
+        }
+
+        /* ─── SERVICES ───────────────────────────────── */
+        .services { background: var(--bg); }
+        .services-grid {
+            display: grid; gap: var(--sp-md);
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 640px)  { .services-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (min-width: 960px)  { .services-grid { grid-template-columns: repeat(3,1fr); } }
+
+        .svc-card {
+            background: var(--bg2); border: 1px solid var(--line);
+            border-radius: 20px; padding: var(--sp-md);
+            position: relative; overflow: hidden;
+            transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+        }
+        .svc-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold2));
+            transform: scaleX(0); transform-origin: left;
+            transition: transform 0.45s var(--ease);
+        }
+        .svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+        .svc-card:hover::before { transform: scaleX(1); }
+        .svc-icon { width: 44px; height: 44px; color: var(--gold); margin-bottom: var(--sp-sm); }
+        .svc-title {
+            font-family: var(--serif); font-size: clamp(1.2rem,2vw,1.4rem);
+            margin-bottom: 0.6rem; color: var(--txt);
+        }
+        .svc-desc { color: var(--txt2); font-size: 0.92rem; line-height: 1.7; }
+
+        /* ─── QUOTE BREAK ────────────────────────────── */
+        .quote-break {
+            padding: var(--sp-xl) var(--sp-md);
+            text-align: center; overflow: hidden;
+        }
+
+        /* ─── PORTFOLIO ──────────────────────────────── */
+        .portfolio { background: var(--bg2); }
+        .bento {
+            display: grid; gap: 0.75rem;
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 540px)  { .bento { grid-template-columns: repeat(2,1fr); } }
+        @media (min-width: 1024px) {
+            .bento {
+                grid-template-columns: repeat(4,1fr);
+                grid-template-rows: repeat(3,280px);
+            }
+            .bento-lg   { grid-column: span 2; grid-row: span 2; }
+            .bento-wide { grid-column: span 2; }
+        }
+        .bento-item {
+            position: relative; border-radius: 16px; overflow: hidden;
+            background: var(--bg3); min-height: 240px;
+        }
+        .bento-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.9s var(--ease);
+        }
+        .bento-item:hover img { transform: scale(1.07); }
+        .bento-shade {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top,
+                rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 55%, transparent 100%);
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .bento-item:hover .bento-shade { opacity: 1; }
+        .bento-info {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: var(--sp-md); transform: translateY(14px);
+            opacity: 0; transition: all 0.45s var(--ease-out);
+        }
+        .bento-item:hover .bento-info { transform: translateY(0); opacity: 1; }
+        .bento-cat  { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.35rem; }
+        .bento-name { font-family: var(--serif); font-size: 1.4rem; color: #fff; font-weight: 400; margin-bottom: 0.3rem; }
+        .bento-mot  { font-size: 0.82rem; color: rgba(255,255,255,0.7); font-style: italic; }
+
+        /* ─── CONTACT ────────────────────────────────── */
+        .contact { background: var(--bg); }
+        .contact-head { text-align: center; margin-bottom: var(--sp-lg); }
+        .contact-slogan {
+            font-family: var(--serif); font-size: clamp(1.85rem,5vw,3.2rem);
+            font-weight: 300; line-height: 1.25; margin-bottom: 1rem;
+        }
+        .contact-sub { color: var(--txt2); font-size: clamp(0.95rem,1.8vw,1.05rem); max-width: 480px; margin: 0 auto; }
+
+        /* Instagram showcase */
+        .insta-showcase { margin-bottom: var(--sp-lg); }
+        .insta-top {
+            display: flex; align-items: center; justify-content: center;
+            gap: 0.6rem; margin-bottom: var(--sp-md);
+        }
+        .insta-top i { color: var(--gold); width: 22px; height: 22px; }
+        .insta-top span { font-family: var(--serif); font-size: 1.15rem; color: var(--txt); }
+        .insta-grid {
+            display: grid; grid-template-columns: repeat(2,1fr);
+            gap: 0.5rem; max-width: 380px; margin: 0 auto;
+        }
+        @media (min-width: 480px) {
+            .insta-grid { grid-template-columns: repeat(4,1fr); max-width: 480px; }
+        }
+        .insta-item {
+            aspect-ratio: 1; border-radius: 10px; overflow: hidden;
+            position: relative; cursor: pointer;
+            transition: transform 0.3s var(--ease);
+        }
+        .insta-item:hover { transform: scale(1.04); }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; }
+        .insta-item-shade {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.45);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .insta-item:hover .insta-item-shade { opacity: 1; }
+        .insta-item-shade i { color: #fff; width: 20px; height: 20px; }
+
+        /* Contact cards */
+        .contact-cards {
+            display: grid; gap: var(--sp-md);
+            grid-template-columns: 1fr; margin-bottom: var(--sp-lg);
+        }
+        @media (min-width: 560px) {
+            .contact-cards {
+                grid-template-columns: repeat(2,1fr);
+                max-width: 660px; margin-left: auto; margin-right: auto;
+            }
+        }
+        .c-card {
+            background: var(--bg2); border: 1px solid var(--line);
+            border-radius: 20px; padding: var(--sp-md); text-align: center;
+            position: relative; transition: transform 0.35s var(--ease), box-shadow 0.35s;
+        }
+        .c-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+        .c-icon {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: var(--glass); border: 1px solid var(--line);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--gold); margin: 0 auto var(--sp-sm);
+            transition: all 0.3s var(--ease);
+        }
+        .c-card:hover .c-icon { background: var(--gold); color: #fff; border-color: var(--gold); }
+        .c-icon i { width: 26px; height: 26px; }
+        .c-card h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 0.4rem; color: var(--txt); }
+        .c-card p  { color: var(--txt2); font-size: 0.9rem; margin-bottom: var(--sp-sm); }
+        .c-action {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            color: var(--gold); font-size: 0.84rem; font-weight: 500;
+            text-decoration: none; transition: gap 0.3s;
+        }
+        .c-card:hover .c-action { gap: 0.65rem; }
+        .c-action i { width: 15px; height: 15px; }
+        .copy-btn {
+            position: absolute; top: var(--sp-sm); right: var(--sp-sm);
+            width: 30px; height: 30px; border-radius: 50%;
+            border: 1px solid var(--line); background: var(--glass);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--txt3); transition: all 0.3s;
+        }
+        .copy-btn:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+        .copy-btn i { width: 13px; height: 13px; }
+        .wa-btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: #25D366; color: #fff; padding: 0.7rem 1.4rem;
+            border-radius: 100px; font-weight: 500; font-size: 0.92rem;
+            text-decoration: none; transition: all 0.3s var(--ease);
+            margin-top: var(--sp-sm);
+        }
+        .wa-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+        .wa-btn i { width: 18px; height: 18px; }
+
+        /* ─── GLASS BUSINESS CARD ────────────────────── */
+        .biz-card-wrap { max-width: 860px; margin: 0 auto; }
+        .biz-card {
+            background: var(--bg2); border: 1px solid var(--glass-border);
+            border-radius: 28px; padding: clamp(1.75rem,5vw,3.5rem);
+            position: relative; overflow: hidden;
+        }
+        .biz-card::before {
+            content: ''; position: absolute;
+            top: -60%; left: -40%; width: 180%; height: 180%;
+            background: radial-gradient(circle, rgba(196,152,106,0.07) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .biz-card-head { text-align: center; margin-bottom: var(--sp-lg); position: relative; z-index: 1; }
+        .biz-logo {
+            font-family: var(--serif); font-size: clamp(1.5rem,4vw,2.2rem);
+            letter-spacing: 0.12em; margin-bottom: 0.4rem; color: var(--txt);
+        }
+        .biz-tagline { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; }
+        .biz-divider { width: 60px; height: 1px; background: var(--gold); opacity: 0.4; margin: 1rem auto 0; }
+
+        .biz-body {
+            display: grid; gap: var(--sp-lg);
+            position: relative; z-index: 1;
+        }
+        @media (min-width: 620px) { .biz-body { grid-template-columns: 1fr 1fr; } }
+
+        .biz-info h3 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: var(--sp-md); color: var(--txt); }
+        .info-row { margin-bottom: var(--sp-sm); }
+        .info-lbl { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+        .info-val { font-size: 0.95rem; color: var(--txt); font-weight: 400; }
+
+        .biz-actions { display: flex; flex-direction: column; gap: var(--sp-sm); }
+        .btn {
+            padding: 0.9rem 1.75rem; border-radius: 100px;
+            font-weight: 500; letter-spacing: 0.06em;
+            transition: all 0.3s var(--ease);
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; cursor: pointer; border: none;
+            font-family: var(--sans); font-size: 0.9rem;
+            text-decoration: none;
+        }
+        .btn-primary { background: var(--txt); color: var(--bg); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+        .btn-outline { background: transparent; border: 1px solid var(--line); color: var(--txt2); }
+        .btn-outline:hover { border-color: var(--txt2); color: var(--txt); }
+        .btn i { width: 17px; height: 17px; }
+
+        /* ─── STICKY SOCIAL (desktop) ────────────────── */
+        .sticky-social {
+            display: none; position: fixed; right: 1.75rem; top: 50%;
+            transform: translateY(-50%); z-index: 500;
+            flex-direction: column; align-items: center; gap: 1.25rem;
+        }
+        @media (min-width: 1024px) { .sticky-social { display: flex; } }
+        .sticky-social::before,
+        .sticky-social::after {
+            content: ''; width: 1px; height: 36px; background: var(--line);
+        }
+        .sticky-btn {
+            width: 38px; height: 38px; border-radius: 50%;
+            border: 1px solid var(--line); background: var(--glass);
+            backdrop-filter: blur(12px);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--txt3); text-decoration: none;
+            transition: all 0.3s var(--ease);
+        }
+        .sticky-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; transform: scale(1.1); }
+        .sticky-btn i { width: 17px; height: 17px; }
+
+        /* ─── MOBILE BOTTOM BAR ──────────────────────── */
+        .mob-bar {
+            display: none; position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(12,12,12,0.92);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid var(--line);
+            padding: 0.6rem 1rem 0.7rem; z-index: 999;
+            justify-content: space-around; align-items: center;
+        }
+        @media (max-width: 767px) { .mob-bar { display: flex; } }
+        .mob-btn {
+            display: flex; flex-direction: column; align-items: center; gap: 3px;
+            color: var(--txt3); text-decoration: none;
+            font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase;
+            transition: color 0.3s; padding: 0.4rem 0.6rem;
+            min-width: 56px;
+        }
+        .mob-btn:hover { color: var(--gold); }
+        .mob-btn.wa  { color: #25D366; }
+        .mob-btn.wa:hover { color: #1da852; }
+        .mob-btn i { width: 22px; height: 22px; }
+
+        /* ─── FOOTER ─────────────────────────────────── */
+        .footer {
+            padding: var(--sp-md); text-align: center;
+            border-top: 1px solid var(--line); background: var(--bg2);
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: var(--sp-md);
+            margin-bottom: 0.75rem;
+        }
+        .footer-links a {
+            font-size: 0.8rem; color: var(--txt3); text-decoration: none;
+            letter-spacing: 0.08em; transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold); }
+        .footer-copy { font-size: 0.78rem; color: var(--txt3); }
+
+        /* ─── TOAST ──────────────────────────────────── */
+        .toast {
+            position: fixed; bottom: calc(1.5rem + 72px); left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--bg3); border: 1px solid var(--line);
+            color: var(--txt); padding: 0.75rem 1.5rem;
+            border-radius: 100px; font-size: 0.84rem; z-index: 9998;
+            opacity: 0; transition: all 0.3s var(--ease-out); pointer-events: none;
+        }
+        @media (min-width: 768px) { .toast { bottom: 1.5rem; } }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ─── REVEAL ANIMATIONS ──────────────────────── */
+        .reveal {
+            opacity: 0; transform: translateY(32px);
+            transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+        }
+        .reveal.in { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.2s; }
+        .d3 { transition-delay: 0.3s; }
+        .d4 { transition-delay: 0.4s; }
+        .d5 { transition-delay: 0.5s; }
+        .d6 { transition-delay: 0.6s; }
+
+        /* ─── FOCUS ──────────────────────────────────── */
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid var(--gold); outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader">
+    <div class="pl-inner">
+        <div class="pl-logo">BAHAR YAPI DEKORASYON</div>
+
+        <div class="pl-sub">İç Mimarlık &amp; Dekorasyon</div>
+        <div class="pl-line"></div>
+    </div>
+</div>
+
+<!-- STICKY SOCIAL (desktop) -->
+<div class="sticky-social">
+    <a href="https://instagram.com/bahar_yap_" target="_blank" rel="noopener" class="sticky-btn" aria-label="Instagram">
+        <i data-lucide="instagram"></i>
+    </a>
+    <a href="https://wa.me/905368471246?text=Merhaba,%20Bahar%20Yapı%20Dekorasyon%20ile%20proje%20görüşmesi%20yapmak%20istiyorum." target="_blank" rel="noopener" class="sticky-btn" aria-label="WhatsApp">
+        <i data-lucide="message-circle"></i>
+    </a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">BAHAR <span>YAPI</span></a>
+
+        <ul class="nav-links">
+            <li><a href="#about">Hikayemiz</a></li>
+            <li><a href="#services">Hizmetler</a></li>
+            <li><a href="#portfolio">Vitrin</a></li>
+            <li><a href="#contact">İletişim</a></li>
+        </ul>
+
+        <div class="nav-right">
+            <a href="https://instagram.com/bahar_yap_" target="_blank" rel="noopener" class="nav-insta-btn" aria-label="Instagram">
+                <i data-lucide="instagram"></i>
+                @bahar_yap_
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Menüyü aç">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#about"    onclick="closeMenu()">Hikayemiz</a>
+    <a href="#services" onclick="closeMenu()">Hizmetler</a>
+    <a href="#portfolio" onclick="closeMenu()">Vitrin</a>
+    <a href="#contact"  onclick="closeMenu()">İletişim</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-bg">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1920&q=80" alt="Lüks İç Mimari" loading="eager" id="heroBg">
+    </div>
+    <div class="hero-grad"></div>
+    <div class="hero-content">
+        <p class="t-label hero-label" id="heroLabel">İç Mimarlık &amp; Dekorasyon</p>
+        <h1 class="t-hero hero-title" id="heroTitle">Mekânın Ruhu, Sizin İmzanız.</h1>
+        <p class="t-large hero-sub" id="heroSub">
+            Lüksü konforla, moderni zanaatla harmanlayan zamansız yaşam alanları tasarlıyoruz.
+        </p>
+    </div>
+    <div class="scroll-cue" id="scrollCue">
+        <span class="t-label" style="font-size:0.65rem;">Keşfet</span>
+        <div class="scroll-cue-line"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-wm">Hikaye</div>
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="t-label">Hakkımızda</span>
+            <h2 class="t-section">Neden Biz?</h2>
+        </div>
+        <div class="reveal d1">
+            <p class="about-text">
+                Biz sadece oda tasarlamıyoruz; hikâyelerin geçtiği sahneleri inşa ediyoruz.
+                15 yıllık estetik birikimimizle, her bir detayı sanatla işleyerek evinizi
+                sadece bir mülk olmaktan çıkarıp bir sığınağa dönüştürüyoruz.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="t-label">Hizmetlerimiz</span>
+            <h2 class="t-section">Detaylar bir bütünü,<br>bütün ise yaşam kalitenizi belirler.</h2>
+        </div>
+        <div class="services-grid">
+            <div class="svc-card reveal d1">
+                <i data-lucide="compass" class="svc-icon"></i>
+                <h3 class="svc-title">Konsept Tasarım</h3>
+                <p class="svc-desc">Mekânın DNA'sını belirliyoruz. Her proje, benzersiz bir hikayenin başlangıcıdır.</p>
+            </div>
+            <div class="svc-card reveal d2">
+                <i data-lucide="clipboard-check" class="svc-icon"></i>
+                <h3 class="svc-title">Uygulama Yönetimi</h3>
+                <p class="svc-desc">Çizimden gerçeğe kusursuz geçiş. Her aşamada yanınızdayız.</p>
+            </div>
+            <div class="svc-card reveal d3">
+                <i data-lucide="gem" class="svc-icon"></i>
+                <h3 class="svc-title">Küratörlük</h3>
+                <p class="svc-desc">Sizin için seçilmiş sanat eserleri ve mobilyalar. Her parça bir ifadedir.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE BREAK -->
+<div class="quote-break">
+    <div class="t-quote reveal">Zarafet</div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+    <div class="container">
+        <div class="sec-head reveal">
+            <span class="t-label">Portfolyo</span>
+            <h2 class="t-section">Seçilmiş Eserler</h2>
+        </div>
+        <div class="bento">
+            <div class="bento-item bento-lg reveal d1">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=800&q=80" alt="Yalı Villa" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">Konut</p>
+                    <h3 class="bento-name">Yalı Villa</h3>
+                    <p class="bento-mot">"Boğaz'ın incisi, zamansız bir zarafet"</p>
+                </div>
+            </div>
+            <div class="bento-item reveal d2">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80" alt="Modern Salon" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">İç Mekan</p>
+                    <h3 class="bento-name">Modern Salon</h3>
+                    <p class="bento-mot">"Işık ve huzur buluşması"</p>
+                </div>
+            </div>
+            <div class="bento-item reveal d3">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80" alt="Mermer Şef" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">Mutfak</p>
+                    <h3 class="bento-name">Mermer Şef</h3>
+                    <p class="bento-mot">"Fonksiyonel şıklık"</p>
+                </div>
+            </div>
+            <div class="bento-item bento-wide reveal d4">
+                <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=1000&q=80" alt="Master Suite" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">Yatak Odası</p>
+                    <h3 class="bento-name">Master Suite</h3>
+                    <p class="bento-mot">"Rüyaların gerçekleştiği alan"</p>
+                </div>
+            </div>
+            <div class="bento-item reveal d5">
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Spa Konsept" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">Banyo</p>
+                    <h3 class="bento-name">Spa Konsept</h3>
+                    <p class="bento-mot">"Gündelik lüks"</p>
+                </div>
+            </div>
+            <div class="bento-item reveal d6">
+                <img src="https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=600&q=80" alt="Kurumsal Ofis" loading="lazy">
+                <div class="bento-shade"></div>
+                <div class="bento-info">
+                    <p class="bento-cat">Ofis</p>
+                    <h3 class="bento-name">Kurumsal</h3>
+                    <p class="bento-mot">"Verimlilik ve estetik"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE BREAK 2 -->
+<div class="quote-break">
+    <div class="t-quote reveal">Denge</div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-head reveal">
+            <span class="t-label">İletişim</span>
+            <h2 class="contact-slogan">Hayalinizdeki Alanı<br>Konuşmaya Başlayalım.</h2>
+            <p class="contact-sub">Bize dilediğiniz kanaldan ulaşabilirsiniz. Hızlı dönüş garantisi veriyoruz.</p>
+        </div>
+
+        <!-- Instagram showcase -->
+        <div class="insta-showcase reveal d1">
+            <div class="insta-top">
+                <i data-lucide="instagram"></i>
+                <span>@bahar_yap_</span>
+            </div>
+            <div class="insta-grid">
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=300&q=80" alt="Instagram 1" loading="lazy">
+                    <div class="insta-item-shade"><i data-lucide="heart"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=300&q=80" alt="Instagram 2" loading="lazy">
+                    <div class="insta-item-shade"><i data-lucide="heart"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=300&q=80" alt="Instagram 3" loading="lazy">
+                    <div class="insta-item-shade"><i data-lucide="heart"></i></div>
+                </div>
+                <div class="insta-item">
+                    <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?w=300&q=80" alt="Instagram 4" loading="lazy">
+                    <div class="insta-item-shade"><i data-lucide="heart"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact cards -->
+        <div class="contact-cards reveal d2">
+            <!-- Phone -->
+            <div class="c-card">
+                <button class="copy-btn" onclick="copyText('0536 847 12 46','Telefon kopyalandı!')" aria-label="Kopyala">
+                    <i data-lucide="copy"></i>
+                </button>
+                <div class="c-icon"><i data-lucide="phone"></i></div>
+                <h3>Telefon</h3>
+                <p>0536 847 12 46</p>
+                <a href="tel:+905368471246" class="c-action">
+                    Ara <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+            <!-- WhatsApp -->
+            <div class="c-card">
+                <div class="c-icon" style="background:#25D366;color:#fff;border-color:#25D366;">
+                    <i data-lucide="message-circle"></i>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Hızlı yanıt garantisi</p>
+                <a href="https://wa.me/905368471246?text=Merhaba,%20Bahar%20Yapı%20Dekorasyon%20ile%20proje%20görüşmesi%20yapmak%20istiyorum."
+                   target="_blank" rel="noopener" class="wa-btn">
+                    <i data-lucide="message-circle"></i>
+                    Mesaj Gönder
+                </a>
+            </div>
+        </div>
+
+        <!-- Digital Business Card -->
+        <div class="biz-card-wrap reveal d3">
+            <div class="biz-card">
+                <div class="biz-card-head">
+                    <div class="biz-logo">BAHAR YAPI DEKORASYON</div>
+                    <div class="biz-tagline">İç Mimarlık &amp; Dekorasyon</div>
+                    <div class="biz-divider"></div>
+                </div>
+                <div class="biz-body">
+                    <div class="biz-info">
+                        <h3>Oğulcan Bahar</h3>
+                        <div class="info-row">
+                            <div class="info-lbl">Telefon</div>
+                            <div class="info-val">0536 847 12 46</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-lbl">Instagram</div>
+                            <div class="info-val">@bahar_yap_</div>
+                        </div>
+                    </div>
+                    <div class="biz-actions">
+                        <button class="btn btn-primary" id="shareBtn">
+                            <i data-lucide="share-2"></i>
+                            Kartviziti Paylaş
+                        </button>
+                        <button class="btn btn-outline" id="vcardBtn">
+                            <i data-lucide="download"></i>
+                            Rehbere Ekle
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-links">
+        <a href="https://instagram.com/bahar_yap_" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/905368471246" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <p class="footer-copy">© 2026 Bahar Yapı Dekorasyon. Mekânın Ruhu, Sizin İmzanız.</p>
+</footer>
+
+<!-- MOBILE BOTTOM BAR -->
+<div class="mob-bar">
+    <a href="tel:+905368471246" class="mob-btn">
+        <i data-lucide="phone"></i>
+        <span>Ara</span>
+    </a>
+    <a href="https://instagram.com/bahar_yap_" target="_blank" rel="noopener" class="mob-btn">
+        <i data-lucide="camera"></i>
+        <span>Instagram</span>
+    </a>
+    <a href="https://wa.me/905368471246?text=Merhaba,%20Bahar%20Yapı%20Dekorasyon%20ile%20proje%20görüşmesi%20yapmak%20istiyorum."
+       target="_blank" rel="noopener" class="mob-btn wa">
+        <i data-lucide="message-circle"></i>
+        <span>WhatsApp</span>
+    </a>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+    lucide.createIcons();
+
+    /* ── Preloader ─────────────────────────────── */
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            document.getElementById('preloader').classList.add('hidden');
+            heroAnim();
+        }, 1900);
+    });
+
+    /* ── Hero animation ────────────────────────── */
+    function heroAnim() {
+        const title = document.getElementById('heroTitle');
+        const text = title.textContent.trim();
+        title.innerHTML = '';
+        text.split(' ').forEach((word, wi) => {
+            const wSpan = document.createElement('span');
+            wSpan.className = 'w';
+            [...word].forEach((ch, ci) => {
+                const c = document.createElement('span');
+                c.className = 'c';
+                c.textContent = ch;
+                c.style.animationDelay = `${wi * 0.28 + ci * 0.05}s`;
+                wSpan.appendChild(c);
+            });
+            title.appendChild(wSpan);
+        });
+        setTimeout(() => {
+            title.querySelectorAll('.c').forEach(c => {
+                c.style.animation = 'cReveal 0.75s cubic-bezier(0.16,1,0.3,1) forwards';
+            });
+        }, 80);
+        ['heroLabel','heroSub','scrollCue'].forEach((id, i) => {
+            const el = document.getElementById(id);
+            if (el) {
+                el.style.animation = `labReveal 0.9s cubic-bezier(0.16,1,0.3,1) ${0.6 + i*0.18}s forwards`;
+            }
+        });
+    }
+
+    const animStyle = document.createElement('style');
+    animStyle.textContent = `
+        @keyframes cReveal   { to { opacity:1; transform:translateY(0); } }
+        @keyframes labReveal { to { opacity:1; transform:translateY(0); } }
+    `;
+    document.head.appendChild(animStyle);
+
+    /* ── Navbar scroll ─────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Parallax hero ─────────────────────────── */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+        const s = window.pageYOffset;
+        if (heroBg && s < window.innerHeight) {
+            heroBg.style.transform = `translateY(${s * 0.45}px)`;
+        }
+    }, { passive: true });
+
+    /* ── Hamburger ─────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        const open = hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    });
+    function closeMenu() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    /* ── Smooth scroll ─────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+
+    /* ── Reveal observer ───────────────────────── */
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    /* ── Instagram grid click ──────────────────── */
+    document.querySelectorAll('.insta-item').forEach(item => {
+        item.addEventListener('click', () => window.open('https://instagram.com/bahar_yap_', '_blank'));
+    });
+
+    /* ── Toast ─────────────────────────────────── */
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    /* ── Copy ──────────────────────────────────── */
+    function copyText(text, msg) {
+        navigator.clipboard.writeText(text).then(() => showToast(msg)).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy');
+            document.body.removeChild(ta); showToast(msg);
+        });
+    }
+
+    /* ── Share ─────────────────────────────────── */
+    document.getElementById('shareBtn').addEventListener('click', async () => {
+        const d = { title: 'Bahar Yapı Dekorasyon', text: 'Mekânın Ruhu, Sizin İmzanız.', url: window.location.href };
+        try {
+            if (navigator.share) await navigator.share(d);
+            else { await navigator.clipboard.writeText(`${d.title}\n${d.url}`); showToast('Bağlantı kopyalandı!'); }
+        } catch {}
+    });
+
+    /* ── vCard ─────────────────────────────────── */
+    document.getElementById('vcardBtn').addEventListener('click', () => {
+        const vc = `BEGIN:VCARD\nVERSION:3.0\nFN:Bahar Yapı Dekorasyon\nORG:Bahar Yapı Dekorasyon\nTEL:+905368471246\nURL:https://instagram.com/bahar_yap_\nNOTE:Mekânın Ruhu, Sizin İmzanız.\nEND:VCARD`;
+        const blob = new Blob([vc], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'bahar-yapi.vcf';
+        document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(url);
+        showToast('vCard indirildi!');
+    });
+</script>
+</body>
+</html>
